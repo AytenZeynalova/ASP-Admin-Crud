@@ -10,78 +10,83 @@ using System.Threading.Tasks;
 namespace ASP_Pustok.Areas.Manage.Controllers
 {
     [Area("manage")]
-    public class AuthorController : Controller
+    public class GenresController : Controller
     {
-        private readonly PustokDbContext _context;
+        private PustokDbContext _context;
 
-        public AuthorController(PustokDbContext context)
+        public GenresController(PustokDbContext context)
         {
             _context = context;
         }
+
+
+
         public IActionResult Index()
         {
-            var data = _context.Authors.Include(x => x.Books).ToList();
-            return View(data);
+            var genres = _context.Genres.Include(x => x.Books).ToList();
+            return View(genres);
         }
-            
+
         public IActionResult Create()
         {
-            return View();
+            return View(); 
         }
 
         [HttpPost]
-        public IActionResult Create(Author author)
+
+        public IActionResult Create(Genre genre)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            _context.Authors.Add(author);
+            _context.Genres.Add(genre);
             _context.SaveChanges();
             return RedirectToAction("index");
         }
-
 
         public IActionResult Edit(int id)
         {
-            Author author = _context.Authors.FirstOrDefault(x => x.Id == id);
-            if(author== null)
+            Genre genre = _context.Genres.FirstOrDefault(x => x.Id == id);
+            if (genre == null)
             {
-               return RedirectToAction("error", "dashboard");
+                return RedirectToAction("error", "dashboard");
             }
-            return View(author);
+            return View(genre);
         }
 
         [HttpPost]
-        public IActionResult Edit(Author author)
+        public IActionResult Edit(Genre genre)
         {
-            Author existAuth = _context.Authors.FirstOrDefault(x => x.Id == author.Id);
-            existAuth.FullName = author.FullName;
-            existAuth.BirthDate = author.BirthDate;
+            Genre existAuth = _context.Genres.FirstOrDefault(x => x.Id == genre.Id);
+            existAuth.Name = genre.Name;
+           
             _context.SaveChanges();
 
             return RedirectToAction("index");
         }
+
+
         public IActionResult Delete(int id)
         {
-            Author author = _context.Authors.Include(x=> x.Books).FirstOrDefault(x => x.Id == id);
-            if(author== null)
+            Genre genre = _context.Genres.Include(x => x.Books).FirstOrDefault(x => x.Id == id);
+            if (genre == null)
             {
                 return RedirectToAction("error", "dashboard");
             }
-            return View(author);
+            return View(genre);
         }
 
         [HttpPost]
-        public IActionResult Delete(Author author)
+        public IActionResult Delete(Genre genre)
         {
-            Author existAuth = _context.Authors.FirstOrDefault(x => x.Id == author.Id);
+            Genre existAuth = _context.Genres.FirstOrDefault(x => x.Id == genre.Id);
             if (existAuth == null)
             {
                 return RedirectToAction("error", "dashboard");
             }
-            _context.Authors.Remove(existAuth);
+            _context.Genres.Remove(existAuth);
             _context.SaveChanges();
 
             return RedirectToAction("index");
@@ -89,18 +94,19 @@ namespace ASP_Pustok.Areas.Manage.Controllers
 
         public IActionResult SweetDelete(int id)
         {
-            Author author = _context.Authors.FirstOrDefault(x => x.Id == id);
+            Genre genre = _context.Genres.FirstOrDefault(x => x.Id == id);
 
-            if(author== null)
+            if (genre == null)
             {
                 return NotFound();
             }
 
-            _context.Authors.Remove(author);
+            _context.Genres.Remove(genre);
             _context.SaveChanges();
 
             return Ok();
 
         }
+
     }
 }

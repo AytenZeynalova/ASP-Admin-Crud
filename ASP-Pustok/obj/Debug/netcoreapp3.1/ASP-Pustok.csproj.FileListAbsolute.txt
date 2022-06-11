@@ -459,3 +459,7 @@ C:\Users\aytnz\Desktop\ASP-Pustok\ASP-Pustok\obj\Debug\netcoreapp3.1\ASP-Pustok.
 C:\Users\aytnz\Desktop\ASP-Pustok\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Author\Edit.cshtml.g.cs
 C:\Users\aytnz\Desktop\ASP-Pustok\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Author\Delete.cshtml.g.cs
 C:\Users\aytnz\Desktop\ASP-Pustok\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Dashboard\error.cshtml.g.cs
+C:\Users\aytnz\Desktop\ASP-Pustok\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Genres\Index.cshtml.g.cs
+C:\Users\aytnz\Desktop\ASP-Pustok\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Genres\Create.cshtml.g.cs
+C:\Users\aytnz\Desktop\ASP-Pustok\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Genres\Edit.cshtml.g.cs
+C:\Users\aytnz\Desktop\ASP-Pustok\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Genres\Delete.cshtml.g.cs
