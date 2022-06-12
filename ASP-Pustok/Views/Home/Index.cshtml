@@ -5,43 +5,6 @@
 
 
 
-<section class="hero-area hero-slider-1">
-    <div class="sb-slick-slider" data-slick-setting='{
-                            "autoplay": true,
-                            "fade": true,
-                            "autoplaySpeed": 3000,
-                            "speed": 3000,
-                            "slidesToShow": 1,
-                            "dots":true
-                            }'>
-        @foreach (HomeSlider hmsldr in Model.HomeSliderss)
-        {
-            <div class="single-slide bg-shade-whisper  ">
-                <div class="container">
-                    <div class="home-content text-center text-sm-left position-relative">
-                        <div class="hero-partial-image image-right">
-                            <img src="~/assets/image/bg-images/@hmsldr.Image" alt="">
-                        </div>
-                        <div class="row no-gutters ">
-                            <div class="col-xl-6 col-md-6 col-sm-7">
-                                <div class="home-content-inner content-left-side">
-                                    <h1>
-                                        @hmsldr.Author
-                                    </h1>
-                                    <h2>@hmsldr.Desc</h2>
-                                    <a href="shop-grid.html" class="btn btn-outlined--primary">
-                                        @hmsldr.ButtonText
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        }
-    </div>
-</section>
 <!--=================================
 Home Features Section
 ===================================== -->
