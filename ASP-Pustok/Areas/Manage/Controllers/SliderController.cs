@@ -63,7 +63,7 @@ namespace ASP_Pustok.Areas.Manage.Controllers
             return RedirectToAction("index");
         }
 
-        public IActionResult Delete(int id)
+        public IActionResult SweetDelete(int id)
         {
             HomeSlider slider = _context.HomeSliders.FirstOrDefault(x => x.Id == id);
             if (slider == null)
