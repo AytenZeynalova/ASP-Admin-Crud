@@ -1,4 +1,5 @@
 ﻿using ASP_Pustok.DAL;
+using ASP_Pustok.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -27,12 +28,75 @@ namespace ASP_Pustok.Areas.Manage.Controllers
 
         public IActionResult Create()
         {
+            ViewBag.Authors = _context.Authors.ToList();
+            ViewBag.Genres = _context.Genres.ToList();
+
             return View();
         }
 
-        public IActionResult Edit()
+        [HttpPost]
+
+        public IActionResult Create(Book book)
         {
-            return View();
+
+            ViewBag.Authors = _context.Authors.ToList();
+            ViewBag.Genres = _context.Genres.ToList();
+
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Authors = _context.Authors.ToList();
+                ViewBag.Genres = _context.Genres.ToList();
+                return View();
+            }
+
+            if (book.ImageFiles != null)
+            {
+                foreach (var file in book.ImageFiles)
+                {
+                    if() 
+                }
+            }
+
+
+            if (!_context.Authors.Any(x => x.Id == book.AuthorId))
+            {
+               ModelState.AddModelError("AuthorId", "Author not exists for this authorid");
+                ViewBag.Authors = _context.Authors.ToList();
+                ViewBag.Genres = _context.Genres.ToList();
+                return View();
+
+             }
+
+
+            if (!_context.Genres.Any(x => x.Id == book.GenreId))
+            {
+                ModelState.AddModelError("GenreId", "Genre not exists for this authorid");
+                ViewBag.Authors = _context.Authors.ToList();
+                ViewBag.Genres = _context.Genres.ToList();
+                return View();
+
+            }
+
+            _context.Books.Add(book);
+            _context.SaveChanges();
+            return RedirectToAction("index");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Book book = _context.Books.FirstOrDefault(x => x.Id == id);
+            if (book == null)
+            {
+                return RedirectToAction("error", "dashboard");
+
+            }
+
+            ViewBag.Authors = _context.Authors.ToList();
+            ViewBag.Genres = _context.Genres.ToList();
+
+
+            return View(book);
         }
     }
 }
