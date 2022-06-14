@@ -1,5 +1,7 @@
 ﻿using ASP_Pustok.DAL;
+using ASP_Pustok.Helpers;
 using ASP_Pustok.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,10 +17,12 @@ namespace ASP_Pustok.Areas.Manage.Controllers
     {
 
         private PustokDbContext _context;
+        private IWebHostEnvironment _env;
 
-        public BookController(PustokDbContext context)
+        public BookController(PustokDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public IActionResult Index()
         {
@@ -50,23 +54,15 @@ namespace ASP_Pustok.Areas.Manage.Controllers
                 return View();
             }
 
-            if (book.ImageFiles != null)
-            {
-                foreach (var file in book.ImageFiles)
-                {
-                    if() 
-                }
-            }
-
 
             if (!_context.Authors.Any(x => x.Id == book.AuthorId))
             {
-               ModelState.AddModelError("AuthorId", "Author not exists for this authorid");
+                ModelState.AddModelError("AuthorId", "Author not exists for this authorid");
                 ViewBag.Authors = _context.Authors.ToList();
                 ViewBag.Genres = _context.Genres.ToList();
                 return View();
 
-             }
+            }
 
 
             if (!_context.Genres.Any(x => x.Id == book.GenreId))
@@ -77,6 +73,46 @@ namespace ASP_Pustok.Areas.Manage.Controllers
                 return View();
 
             }
+
+
+            if (book.ImageFiles != null)
+            {
+                foreach (var file in book.ImageFiles)
+                {
+                    if (file.ContentType != "image/png" && file.ContentType != "image/jpeg")
+                    {
+                        ModelState.AddModelError("ImageFiles", "file formati image/png yaxud image/jpeg olmalidir");
+                        return View();
+                    }
+
+                    if (file.Length > 2097152)
+                    {
+                        ModelState.AddModelError("ImageFiles", "faylin olcusu 2mb-dan artiq ola bilmez!");
+                        return View();
+                    }
+
+                    if (!ModelState.IsValid)
+                    {
+                        ViewBag.Authors = _context.Authors.ToList();
+                        ViewBag.Genres = _context.Genres.ToList();
+                        return View();
+                    }
+                }
+
+                foreach (var file in book.ImageFiles)
+                {
+                    BookImage bookImage = new BookImage 
+                    { 
+
+                        Name=FileManager.Save(_env.WebRootPath,"uploads/books",file)
+
+                    };
+
+                }
+            }
+
+
+          
 
             _context.Books.Add(book);
             _context.SaveChanges();
