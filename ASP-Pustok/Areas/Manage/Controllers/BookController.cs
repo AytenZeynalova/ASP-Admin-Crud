@@ -75,6 +75,9 @@ namespace ASP_Pustok.Areas.Manage.Controllers
             }
 
 
+            _context.Books.Add(book);
+            _context.SaveChanges();
+
             if (book.ImageFiles != null)
             {
                 foreach (var file in book.ImageFiles)
@@ -101,21 +104,21 @@ namespace ASP_Pustok.Areas.Manage.Controllers
 
                 foreach (var file in book.ImageFiles)
                 {
-                    BookImage bookImage = new BookImage 
-                    { 
+                    BookImage bookImage = new BookImage
+                    {
 
-                        Name=FileManager.Save(_env.WebRootPath,"uploads/books",file)
-
+                        Name = FileManager.Save(_env.WebRootPath, "uploads/books", file),
+                        Book = book
                     };
-
+                    _context.BookImages.Add(bookImage);
+                    _context.SaveChanges();
                 }
             }
 
 
           
 
-            _context.Books.Add(book);
-            _context.SaveChanges();
+        
             return RedirectToAction("index");
         }
 
