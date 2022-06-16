@@ -105,7 +105,7 @@ namespace ASP_Pustok.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("PosterStatus")
+                    b.Property<bool?>("PosterStatus")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");

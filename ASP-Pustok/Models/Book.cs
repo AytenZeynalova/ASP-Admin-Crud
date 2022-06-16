@@ -31,8 +31,13 @@ namespace ASP_Pustok.Models
 
             public Genre Genre { get; set; }
             public Author Author { get; set; }
-            public List<BookImage> BookImages { get; set; }
-         
+            public List<BookImage> BookImages { get; set; } = new List<BookImage>();
+
+
+        [NotMapped]
+
+        public IFormFile PosterFile { get; set; }
+
             [NotMapped]
             public List<IFormFile> ImageFiles { get; set; }
 

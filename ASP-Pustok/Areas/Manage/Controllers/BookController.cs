@@ -75,8 +75,44 @@ namespace ASP_Pustok.Areas.Manage.Controllers
             }
 
 
-            _context.Books.Add(book);
-            _context.SaveChanges();
+            if (book.PosterFile == null)
+            {
+                ModelState.AddModelError("PosterFile", "Poster File is Required");
+                ViewBag.Authors = _context.Authors.ToList();
+                ViewBag.Genres = _context.Genres.ToList();
+                return View();
+
+            }
+            else
+            {
+                if (book.PosterFile.ContentType != "image/png" && book.PosterFile.ContentType != "image/jpeg")
+                {
+                    ModelState.AddModelError("PosterFile", "file formati image/png yaxud image/jpeg olmalidir");
+                    return View();
+                }
+
+                if (book.PosterFile.Length > 2097152)
+                {
+                    ModelState.AddModelError("PosterFile", "faylin olcusu 2mb-dan artiq ola bilmez!");
+                    return View();
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Authors = _context.Authors.ToList();
+                    ViewBag.Genres = _context.Genres.ToList();
+                    return View();
+                }
+
+                BookImage bookImage = new BookImage
+                {
+
+                    Name = FileManager.Save(_env.WebRootPath, "uploads/books", book.PosterFile),
+                    PosterStatus = true
+                };
+                book.BookImages.Add(bookImage);
+
+            }
 
             if (book.ImageFiles != null)
             {
@@ -106,19 +142,18 @@ namespace ASP_Pustok.Areas.Manage.Controllers
                 {
                     BookImage bookImage = new BookImage
                     {
-
                         Name = FileManager.Save(_env.WebRootPath, "uploads/books", file),
-                        Book = book
+                        PosterStatus=null,
                     };
-                    _context.BookImages.Add(bookImage);
+                    book.BookImages.Add(bookImage);
                     _context.SaveChanges();
                 }
             }
 
 
-          
+            _context.Books.Add(book);
+            _context.SaveChanges();
 
-        
             return RedirectToAction("index");
         }
 
@@ -128,12 +163,10 @@ namespace ASP_Pustok.Areas.Manage.Controllers
             if (book == null)
             {
                 return RedirectToAction("error", "dashboard");
-
             }
 
             ViewBag.Authors = _context.Authors.ToList();
             ViewBag.Genres = _context.Genres.ToList();
-
 
             return View(book);
         }

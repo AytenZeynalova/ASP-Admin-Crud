@@ -3,7 +3,51 @@
     ViewData["Title"] = "Index";
 }
 
+<!--=================================
+    Hero Area
+    ===================================== -->
+<section class="hero-area hero-slider-1">
+    <div class="sb-slick-slider" data-slick-setting='{
+                            "autoplay": true,
+                            "fade": true,
+                            "autoplaySpeed": 3000,
+                            "speed": 3000,
+                            "slidesToShow": 1,
+                            "dots":true
+                            }'>
 
+        @foreach (HomeSlider sldrs in Model.HomeSliderss)
+	{
+        <div class="single-slide bg-shade-whisper  ">
+            <div class="container">
+                <div class="home-content text-center text-sm-left position-relative">
+                    <div class="hero-partial-image image-right">
+                        <img src="~/uploads/sliders/@sldrs.Image" >
+                    </div>
+                    <div class="row no-gutters ">
+                        <div class="col-xl-6 col-md-6 col-sm-7">
+                            <div class="home-content-inner content-left-side">
+                                <h1>
+                                    @sldrs.Title
+                                    <br/>
+                                    @sldrs.SubTitle
+                                </h1>
+                                <h2>@sldrs.Desc</h2>
+                                <a href="@sldrs.ButtonUrl" class="btn btn-outlined--primary">
+                                    @sldrs.ButtonText
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	}
+
+        
+        
+    </div>
+</section>
 
 <!--=================================
 Home Features Section
