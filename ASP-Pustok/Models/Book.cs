@@ -35,11 +35,18 @@ namespace ASP_Pustok.Models
 
 
         [NotMapped]
-
         public IFormFile PosterFile { get; set; }
+
+
+        [NotMapped]
+        public IFormFile HoverPosterFiler { get; set; }
+
 
             [NotMapped]
             public List<IFormFile> ImageFiles { get; set; }
+
+        [NotMapped]
+        public List<int> ImageIds { get; set; }
 
 
        }

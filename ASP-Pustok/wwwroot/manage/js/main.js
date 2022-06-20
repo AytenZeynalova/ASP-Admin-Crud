@@ -38,4 +38,8 @@ $(document).ready(function () {
             }
         })
     })
+
+    $(".remove-img").click(function (e) {
+        $(this).parent().remove();
+    })
 })

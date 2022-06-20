@@ -1,18 +1,15 @@
 ﻿
 @model Book
-
 @{
+
     ViewData["Title"] = "Edit";
 }
-
-
-
 
 <div class="container">
 
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <form asp-action="create" method="post" enctype="multipart/form-data">
+            <form asp-action="edit" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label asp-for="Name" class="form-label">Name</label>
                     <input asp-for="Name" type="text" class="form-control">
@@ -86,18 +83,38 @@
                     <span class="text-danger" asp-validation-for="Desc"></span>
                 </div>
 
-                @*<div class="mb-3">
-                        <label asp-for="PosterFile" class="form-label">PosterFile</label>
-                        <input asp-for="PosterFile" class="form-control">
-                        <span class="text-danger" asp-validation-for="PosterFile"></span>
-                    </div>
+                <div class="mb-3">
+                    <label asp-for="PosterFile" class="form-label">PosterFile</label>
+                    <input asp-for="PosterFile" class="form-control">
+                    <span class="text-danger" asp-validation-for="PosterFile"></span>
+                    <img src="~/uploads/books/@Model.BookImages.FirstOrDefault(x => x.PosterStatus == true).Name" width="150"  />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="HoverPosterFiler" class="form-label">HoverPosterFiler</label>
+                    <input asp-for="HoverPosterFiler" class="form-control">
+                    <span class="text-danger" asp-validation-for="HoverPosterFiler"></span>
+                    <img src="~/uploads/books/@Model.BookImages.FirstOrDefault(x => x.PosterStatus == false).Name" width="150" />
+
+                </div>
 
 
-                    <div class="mb-3">
-                        <label asp-for="ImageFiles" class="form-label">ImageFiles</label>
-                        <input asp-for="ImageFiles" class="form-control">
-                        <span class="text-danger" asp-validation-for="ImageFiles"></span>
-                    </div>*@
+                <div class="mb-3">
+                    <label asp-for="ImageFiles" class="form-label">ImageFiles</label>
+                    <input asp-for="ImageFiles" class="form-control">
+                    <span class="text-danger" asp-validation-for="ImageFiles"></span>
+                    @foreach (var img in Model.BookImages.Where(x => x.PosterStatus == null))
+                    {
+                <div class="img-box">
+                    <span class="remove-img">
+                        <i class="fas fa-times" style="color:red"></i>
+                    </span>
+                    <img src="~/uploads/books/@img.Name" width="150" />
+                    <input type="hidden" name="ImageIds" value="@img.Id" />
+                </div>
+
+                    }   
+                </div>
 
 
 
@@ -106,4 +123,3 @@
         </div>
     </div>
 </div>
-

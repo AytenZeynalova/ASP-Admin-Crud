@@ -1,6 +1,7 @@
 ﻿@model HomeViewModel
 @{
     ViewData["Title"] = "Index";
+    int slideCount = 1;
 }
 
 <!--=================================
@@ -17,19 +18,51 @@
                             }'>
 
         @foreach (HomeSlider sldrs in Model.HomeSliderss)
-	{
-        <div class="single-slide bg-shade-whisper  ">
+        {
+
+            bool IsEven = slideCount % 2 == 0;
+            slideCount++;
+
+
+            <div class="single-slide bg-ghost-@(IsEven?"white":"whisper")  ">
+                <div class="container">
+                    <div class="home-content text-center text-sm-left position-relative">
+                        <div class="hero-partial-image image-@(IsEven?"left":"right")">
+                            <img src="~/uploads/sliders/@sldrs.Image">
+                        </div>
+                        <div class="row @(IsEven?"align-items-center justify-content-start justify-content-md-end":"no-gutters")">
+                            <div class="col-xl-6 col-md-6 col-sm-7">
+                                <div class="home-content-inner content-@(IsEven?"right-side":"left-side")">
+                                    <h1>
+                                        @sldrs.Title
+                                        <br />
+                                        @sldrs.SubTitle
+                                    </h1>
+                                    <h2>@sldrs.Desc</h2>
+                                    <a href="@sldrs.ButtonUrl" class="btn btn-outlined--primary">
+                                        @sldrs.ButtonText
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        @*<div class="single-slide bg-shade-whisper  ">
             <div class="container">
                 <div class="home-content text-center text-sm-left position-relative">
                     <div class="hero-partial-image image-right">
-                        <img src="~/uploads/sliders/@sldrs.Image" >
+                        <img src="~/uploads/sliders/@sldrs.Image">
                     </div>
                     <div class="row no-gutters ">
                         <div class="col-xl-6 col-md-6 col-sm-7">
                             <div class="home-content-inner content-left-side">
                                 <h1>
                                     @sldrs.Title
-                                    <br/>
+                                    <br />
                                     @sldrs.SubTitle
                                 </h1>
                                 <h2>@sldrs.Desc</h2>
@@ -41,11 +74,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-	}
+        </div>*@
 
-        
-        
+
     </div>
 </section>
 
@@ -124,7 +155,7 @@ Home Slider Tab
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane show active" id="shop" role="tabpanel" aria-labelledby="shop-tab">
+                <div class="tab-pane active" id="shop" role="tabpanel" aria-labelledby="shop-tab">
                     <div class="product-slider multiple-row  slider-border-multiple-row  sb-slick-slider"
                          data-slick-setting='{
                             "autoplay": true,
