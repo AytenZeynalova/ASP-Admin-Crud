@@ -20,5 +20,10 @@ namespace ASP_Pustok.Services
         {
             return _context.Genres.ToList();
         }
+
+        public Dictionary<string, string> GetSettings()
+        {
+            return _context.Settings.ToDictionary(x=>x.Key,x=>x.Value);
+        }
     }
 }

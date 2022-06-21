@@ -30,7 +30,7 @@ namespace ASP_Pustok.Controllers
                 .Where(x => x.IsFeatured).Take(20).ToList(),
 
                 NewBooks= _context.Books.Include(x => x.BookImages).Include(x => x.Author).ToList()
-                .Where(x => x.InNew).Take(20).ToList(),
+                .Where(x => x.IsNew).Take(20).ToList(),
             };
 
             return View(homeViewModel);

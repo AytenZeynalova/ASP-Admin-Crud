@@ -23,11 +23,12 @@ namespace ASP_Pustok
 
             services.AddDbContext<PustokDbContext>(options =>
             {
-                options.UseSqlServer(@"Server=AYTEN\SQLEXPRESS01;Database=Pustok;Trusted_Connection=TRUE");
+                options.UseSqlServer(@"Server=DESKTOP-Q400V6O;Database=Pustok;Trusted_Connection=TRUE");
             });
 
             services.AddScoped<LayoutService>();
 
+            //services.AddTransient<LayoutService>();
 
         }
 
