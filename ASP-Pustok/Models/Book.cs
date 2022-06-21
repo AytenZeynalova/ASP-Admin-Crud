@@ -29,24 +29,26 @@ namespace ASP_Pustok.Models
             public bool IsAvailable { get; set; }
             public byte Rate { get; set; }
 
+            public bool IsNew { get; set; }
+            public bool IsFeatured { get; set; }
             public Genre Genre { get; set; }
             public Author Author { get; set; }
             public List<BookImage> BookImages { get; set; } = new List<BookImage>();
 
 
-        [NotMapped]
-        public IFormFile PosterFile { get; set; }
+            [NotMapped]
+            public IFormFile PosterFile { get; set; }
 
 
-        [NotMapped]
-        public IFormFile HoverPosterFiler { get; set; }
+            [NotMapped]
+            public IFormFile HoverPosterFiler { get; set; }
 
 
             [NotMapped]
             public List<IFormFile> ImageFiles { get; set; }
 
-        [NotMapped]
-        public List<int> ImageIds { get; set; }
+            [NotMapped]
+            public List<int> ImageIds { get; set; }
 
 
        }
