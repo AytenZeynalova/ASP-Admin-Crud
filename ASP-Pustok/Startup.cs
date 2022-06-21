@@ -1,4 +1,5 @@
 using ASP_Pustok.DAL;
+using ASP_Pustok.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +25,10 @@ namespace ASP_Pustok
             {
                 options.UseSqlServer(@"Server=AYTEN\SQLEXPRESS01;Database=Pustok;Trusted_Connection=TRUE");
             });
+
+            services.AddScoped<LayoutService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
