@@ -803,3 +803,8 @@ C:\Users\aytnz\Desktop\ASP-Admin-Crud\ASP-Pustok\obj\Debug\netcoreapp3.1\ASP-Pus
 C:\Users\aytnz\Desktop\ASP-Admin-Crud\ASP-Pustok\obj\Debug\netcoreapp3.1\ASP-Pustok.csproj.AssemblyReference.cache
 C:\Users\aytnz\Desktop\ASP-Admin-Crud\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BookTabSliderPartial.cshtml.g.cs
 C:\Users\Ayten\Desktop\ASP-Admin-Crud\ASP-Pustok\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BookTabSliderPartial.cshtml.g.cs
+C:\Users\Ayten\Desktop\ASP-Admin-Crud\ASP-Pustok\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Ayten\Desktop\ASP-Admin-Crud\ASP-Pustok\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Ayten\Desktop\ASP-Admin-Crud\ASP-Pustok\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Ayten\Desktop\ASP-Admin-Crud\ASP-Pustok\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Ayten\Desktop\ASP-Admin-Crud\ASP-Pustok\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll

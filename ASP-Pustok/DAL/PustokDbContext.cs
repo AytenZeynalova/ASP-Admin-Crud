@@ -1,5 +1,6 @@
 ﻿
 using ASP_Pustok.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ASP_Pustok.DAL
 {
-    public class PustokDbContext:DbContext
+    public class PustokDbContext:IdentityDbContext
     {
         public PustokDbContext(DbContextOptions<PustokDbContext> options) :base(options)
         {
@@ -24,6 +25,7 @@ namespace ASP_Pustok.DAL
         public DbSet<BookImage> BookImages { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<AppUser> Users { get; set; }
 
     }
 }

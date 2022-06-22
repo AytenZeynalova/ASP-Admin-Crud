@@ -1,8 +1,10 @@
 using ASP_Pustok.DAL;
+using ASP_Pustok.Models;
 using ASP_Pustok.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -30,6 +32,15 @@ namespace ASP_Pustok
 
             //services.AddTransient<LayoutService>();
 
+            services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequireDigit = true;
+                opt.Password.RequireLowercase = true;
+                opt.Password.RequireUppercase = true;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredLength = 5;
+
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<PustokDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
